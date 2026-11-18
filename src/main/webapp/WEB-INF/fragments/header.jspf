@@ -1,0 +1,23 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<header class="site-header">
+  <div class="header-inner container">
+    <div class="header-left">
+      <a href="${pageContext.request.contextPath}/home" class="site-logo">
+        <span class="logo-mark">&#10047;</span>
+        <span class="logo-text">Beauti<strong>Pick</strong></span>
+      </a>
+      <a href="${pageContext.request.contextPath}/quiz" class="btn btn-secondary-outline btn-quiz-header" title="Take our personalized skincare quiz">
+        <span class="icon-sparkle">&#10024;</span> Get Recommendations
+      </a>
+    </div>
+
+    <nav class="header-nav">
+      <ul class="nav-links">
+        <li><a href="${pageContext.request.contextPath}/home" class="nav-link">Home</a></li>
+        <li><a href="${pageContext.request.contextPath}/products" class="nav-link">Browse &amp; Compare</a></li>
+        <li><a href="${pageContext.request.contextPath}/quiz" class="nav-link">Skin Quiz</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

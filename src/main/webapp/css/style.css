@@ -1,0 +1,1440 @@
+/* ==========================================================================
+   BeautiPick - Skincare & Beauty Portal Stylesheet
+   Modern, responsive, mobile-first design with clean beauty aesthetics.
+   ========================================================================== */
+
+:root {
+  --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --color-primary: #a85848;
+  --color-primary-hover: #8f4435;
+  --color-primary-light: #fbf3f0;
+  --color-accent: #2c5e50;
+  --color-accent-light: #eef6f3;
+  --color-bg: #f9f6f2;
+  --color-surface: #ffffff;
+  --color-text-main: #231f1e;
+  --color-text-muted: #69625f;
+  --color-border: #e6dfd8;
+  --color-border-light: #f0ebe4;
+  --color-highlight-row: #f4faf6;
+  --color-success: #1f7a52;
+  --color-success-bg: #eaf6ef;
+  --color-warning-bg: #fff8e8;
+  --color-warning-border: #f0d59e;
+  --color-warning-text: #7a5814;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 3px rgba(35, 31, 30, 0.05);
+  --shadow-md: 0 4px 14px rgba(35, 31, 30, 0.08);
+  --shadow-lg: 0 10px 25px rgba(35, 31, 30, 0.1);
+  --transition: all 0.2s ease-in-out;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  line-height: 1.55;
+  font-size: 15px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ==========================================================================
+   Buttons & Core Components
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+/* Solid Primary Style (Browse & Buy, Card buttons, Main Action) */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #ffffff !important;
+  padding: 10px 18px;
+  box-shadow: 0 2px 6px rgba(168, 88, 72, 0.25);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  box-shadow: 0 4px 10px rgba(168, 88, 72, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-large {
+  padding: 14px 28px;
+  font-size: 15px;
+  border-radius: var(--radius-md);
+}
+
+/* Outlined Secondary Style (Get Recommendations button) */
+.btn-secondary-outline {
+  background-color: #ffffff;
+  color: var(--color-primary) !important;
+  border: 1.5px solid var(--color-primary);
+  padding: 8px 16px;
+}
+
+.btn-secondary-outline:hover {
+  background-color: var(--color-primary-light);
+  border-color: var(--color-primary-hover);
+  color: var(--color-primary-hover) !important;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+/* ==========================================================================
+   Header & Navigation
+   Upper-left compact "Get Recommendations" button pinned next to logo
+   ========================================================================== */
+
+.site-header {
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  gap: 16px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.site-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text-main) !important;
+  letter-spacing: -0.3px;
+}
+
+.logo-mark {
+  color: var(--color-primary);
+  font-size: 20px;
+}
+
+.logo-text strong {
+  color: var(--color-primary);
+}
+
+/* Header "Get Recommendations" button - compact 36-40px tall, never full-width */
+.btn-quiz-header {
+  height: 38px;
+  padding: 0 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+}
+
+.icon-sparkle {
+  color: var(--color-primary);
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.nav-link {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.nav-link:hover {
+  color: var(--color-primary);
+}
+
+/* ==========================================================================
+   Hero Section (Landing Page)
+   ========================================================================== */
+
+.hero-section {
+  background: linear-gradient(180deg, #ffffff 0%, var(--color-bg) 100%);
+  padding: 48px 0 36px 0;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.hero-content {
+  max-width: 820px;
+}
+
+.hero-badge {
+  display: inline-block;
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  margin-bottom: 16px;
+}
+
+.hero-headline {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-text-main);
+  margin-bottom: 14px;
+  letter-spacing: -0.5px;
+}
+
+.hero-subtext {
+  font-size: 17px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin-bottom: 26px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   Showcase & Product Grid
+   ========================================================================== */
+
+.showcase-section {
+  padding: 40px 20px 60px 20px;
+}
+
+.section-header {
+  margin-bottom: 22px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text-main);
+  letter-spacing: -0.3px;
+}
+
+.section-subtitle {
+  font-size: 14.5px;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+/* Category Filter Chips */
+.category-chips-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.chip {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  padding: 7px 16px;
+  border-radius: var(--radius-full);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.chip:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.chip.active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(168, 88, 72, 0.25);
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+/* Product Card */
+.product-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.product-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  border-color: #d8cec4;
+}
+
+.card-image-wrap {
+  position: relative;
+  background-color: #f7f3ee;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.product-image {
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.03);
+}
+
+.category-pill {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: rgba(255, 255, 255, 0.92);
+  color: var(--color-text-main);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-light);
+  backdrop-filter: blur(4px);
+}
+
+.card-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.product-brand {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+
+.product-name {
+  font-size: 15.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--color-text-main);
+  margin-bottom: 12px;
+  flex-grow: 1;
+}
+
+.product-name a {
+  color: inherit;
+}
+
+.product-name a:hover {
+  color: var(--color-primary);
+}
+
+/* Match Reason Highlight inside Card (on quiz results page) */
+.card-match-reason {
+  background-color: var(--color-accent-light);
+  border: 1px solid #d2e7dd;
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+}
+
+.match-badge-icon {
+  color: var(--color-accent);
+  font-weight: bold;
+  font-size: 12px;
+  margin-top: 1px;
+}
+
+.match-text {
+  font-size: 12px;
+  color: var(--color-accent);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.card-footer-pricing {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.price-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-label {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.price-amount {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.btn-card {
+  padding: 8px 12px;
+  font-size: 12.5px;
+}
+
+/* ==========================================================================
+   Page Main & Filter Toolbar (Products Catalog)
+   ========================================================================== */
+
+.page-main {
+  padding: 32px 20px 60px 20px;
+}
+
+.breadcrumb {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: 14px;
+}
+
+.breadcrumb a {
+  color: var(--color-text-muted);
+}
+
+.breadcrumb a:hover {
+  color: var(--color-primary);
+}
+
+.breadcrumb span {
+  color: var(--color-text-main);
+  font-weight: 600;
+}
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: 6px;
+}
+
+.page-description {
+  font-size: 15px;
+  color: var(--color-text-muted);
+}
+
+.filter-toolbar {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow-sm);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 300px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 9px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: #faf8f5;
+  outline: none;
+  transition: var(--transition);
+}
+
+.search-input:focus {
+  background-color: #ffffff;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(168, 88, 72, 0.15);
+}
+
+.btn-search {
+  padding: 9px 16px;
+  font-size: 13.5px;
+  background-color: var(--color-text-main);
+  color: #ffffff;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-search:hover {
+  background-color: #000000;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.filter-select {
+  padding: 9px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: #ffffff;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-clear-filter {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-left: 6px;
+}
+
+.results-meta {
+  font-size: 13.5px;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  margin-top: 10px;
+}
+
+.empty-icon {
+  font-size: 44px;
+  margin-bottom: 14px;
+}
+
+.empty-state h3, .empty-state h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: var(--color-text-main);
+}
+
+.empty-state p {
+  color: var(--color-text-muted);
+  max-width: 500px;
+  margin: 0 auto 20px auto;
+}
+
+/* ==========================================================================
+   Product Detail & Price Comparison
+   ========================================================================== */
+
+.detail-container {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 36px;
+  margin-top: 16px;
+}
+
+.detail-media {
+  position: relative;
+}
+
+.detail-image-box {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  position: sticky;
+  top: 90px;
+  box-shadow: var(--shadow-sm);
+}
+
+.detail-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+}
+
+.detail-category-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+}
+
+.detail-brand {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  display: inline-block;
+}
+
+.detail-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-text-main);
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+
+.detail-price-hero {
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow-sm);
+}
+
+.detail-price-label {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.detail-price-val {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--color-text-main);
+}
+
+.badge-lowest-pill {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+
+.detail-desc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #4a4543;
+  margin-bottom: 22px;
+}
+
+.detail-meta-group {
+  margin-bottom: 18px;
+}
+
+.detail-meta-group h4 {
+  font-size: 13px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.tag-cloud, .skin-types-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag-item, .skin-type-tag {
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-main);
+}
+
+.skin-type-tag.sensitive-safe {
+  background-color: var(--color-accent-light);
+  border-color: #c9e4d7;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* Price Comparison Table */
+.price-comparison-section {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin-top: 30px;
+  box-shadow: var(--shadow-sm);
+}
+
+.comparison-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.comparison-subtitle {
+  font-size: 13.5px;
+  color: var(--color-text-muted);
+  margin-bottom: 18px;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.price-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+}
+
+.price-table th {
+  background-color: #faf7f2;
+  color: var(--color-text-muted);
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 12px 16px;
+  border-bottom: 1.5px solid var(--color-border);
+}
+
+.price-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--color-border-light);
+  vertical-align: middle;
+}
+
+.lowest-price-row {
+  background-color: var(--color-highlight-row);
+}
+
+.site-branding {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+}
+
+.site-icon {
+  font-size: 16px;
+}
+
+.table-price {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.badge-lowest-price {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+}
+
+.badge-in-stock {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.text-right {
+  text-align: right;
+}
+
+.btn-buy {
+  padding: 8px 16px;
+  font-size: 13.5px;
+}
+
+.btn-highlight {
+  background-color: var(--color-success);
+  box-shadow: 0 2px 6px rgba(31, 122, 82, 0.25);
+}
+
+.btn-highlight:hover {
+  background-color: #186040;
+}
+
+.table-notice {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-top: 14px;
+}
+
+/* ==========================================================================
+   Multi-step Skincare Quiz
+   ========================================================================== */
+
+.quiz-container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.quiz-header-banner {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.quiz-pill-badge {
+  display: inline-block;
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  margin-bottom: 12px;
+}
+
+.quiz-title {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--color-text-main);
+}
+
+.quiz-subtitle {
+  font-size: 15.5px;
+  color: var(--color-text-muted);
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.alert-box {
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.alert-danger {
+  background-color: #fdf2f2;
+  border: 1px solid #f8b4b4;
+  color: #9b1c1c;
+}
+
+.alert-danger ul {
+  margin: 8px 0 0 20px;
+}
+
+.quiz-progress-wrap {
+  margin-bottom: 24px;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+}
+
+.progress-bar-track {
+  width: 100%;
+  height: 8px;
+  background-color: #e5ded7;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+}
+
+.quiz-card-form {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 24px;
+}
+
+.quiz-step {
+  display: none;
+}
+
+.quiz-step.active-step {
+  display: block;
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.step-question-header {
+  margin-bottom: 24px;
+}
+
+.question-number {
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  letter-spacing: 0.8px;
+}
+
+.question-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin: 4px 0 6px 0;
+}
+
+.question-subtitle {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+/* Options Grid */
+.options-grid {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.option-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 18px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  background-color: #ffffff;
+  transition: var(--transition);
+}
+
+.option-card:hover {
+  border-color: #c9bdb3;
+  background-color: #fdfbf9;
+}
+
+.option-card.selected {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+}
+
+.quiz-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.option-indicator {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: var(--transition);
+}
+
+.multi-select .option-indicator {
+  border-radius: 4px;
+}
+
+.check-icon {
+  font-size: 12px;
+  color: #ffffff;
+  display: none;
+}
+
+.option-card.selected .option-indicator {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.option-card.selected .check-icon {
+  display: block;
+}
+
+.option-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.option-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.option-desc {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.step-nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.btn-step-prev {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.btn-step-prev:hover {
+  background-color: #f2ece6;
+  color: var(--color-text-main);
+}
+
+.btn-step-next, .btn-submit-quiz {
+  padding: 10px 22px;
+  font-size: 14px;
+}
+
+.quiz-disclaimer-card {
+  background-color: var(--color-warning-bg);
+  border: 1px solid var(--color-warning-border);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.info-icon {
+  font-size: 18px;
+  color: var(--color-warning-text);
+}
+
+.quiz-disclaimer-card p {
+  font-size: 13px;
+  color: var(--color-warning-text);
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   Quiz Results Page
+   ========================================================================== */
+
+.results-header-banner {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.results-badge {
+  display: inline-block;
+  background-color: var(--color-accent-light);
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  margin-bottom: 12px;
+}
+
+.results-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: 6px;
+}
+
+.results-subtitle {
+  font-size: 15px;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto 16px auto;
+}
+
+/* Mandatory One-line medical notice bar */
+.medical-notice-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-warning-bg);
+  border: 1px solid var(--color-warning-border);
+  color: var(--color-warning-text);
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  margin-top: 6px;
+}
+
+.notice-icon {
+  font-size: 15px;
+}
+
+.profile-summary-box {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 14px 20px;
+  margin-bottom: 26px;
+  box-shadow: var(--shadow-sm);
+}
+
+.profile-summary-title {
+  font-size: 12.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+}
+
+.profile-tags-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.profile-tag {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  color: var(--color-text-main);
+}
+
+.results-grid-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.results-grid-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.empty-results-card {
+  margin: 30px auto;
+  max-width: 620px;
+}
+
+.empty-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+  background-color: #211c1b;
+  color: #d1c8c2;
+  margin-top: 60px;
+  padding: 50px 0 0 0;
+  border-top: 1px solid #362e2c;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-brand .footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 14px;
+}
+
+.footer-brand .footer-tagline {
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 440px;
+  color: #a89f99;
+  margin-bottom: 14px;
+}
+
+.footer-disclaimer-note {
+  font-size: 12.5px;
+  color: #8c827c;
+  line-height: 1.4;
+}
+
+.footer-links {
+  display: flex;
+  gap: 40px;
+}
+
+.footer-col h4 {
+  color: #ffffff;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 14px;
+}
+
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-col a {
+  color: #a89f99;
+  font-size: 13.5px;
+}
+
+.footer-col a:hover {
+  color: #ffffff;
+}
+
+.footer-bottom {
+  border-top: 1px solid #302826;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 12.5px;
+  color: #7b716b;
+}
+
+/* ==========================================================================
+   Responsive & Mobile Adaptations
+   ========================================================================== */
+
+@media (max-width: 860px) {
+  .detail-container {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-image-box {
+    position: static;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .header-inner {
+    height: auto;
+    padding: 10px 14px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .header-left {
+    gap: 10px;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* Compact header quiz button stays visible on mobile in top-left */
+  .btn-quiz-header {
+    height: 36px;
+    font-size: 12.5px;
+    padding: 0 10px;
+    flex-shrink: 0;
+  }
+
+  .header-nav {
+    width: 100%;
+    border-top: 1px solid var(--color-border-light);
+    padding-top: 8px;
+    justify-content: center;
+  }
+
+  .nav-links {
+    gap: 16px;
+  }
+
+  .hero-headline {
+    font-size: 24px;
+  }
+
+  .hero-subtext {
+    font-size: 15px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quiz-card-form {
+    padding: 20px 16px;
+  }
+
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .filter-group {
+    justify-content: space-between;
+  }
+}

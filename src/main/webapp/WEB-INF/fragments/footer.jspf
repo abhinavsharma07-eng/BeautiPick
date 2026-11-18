@@ -1,0 +1,44 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<footer class="site-footer">
+  <div class="container footer-content">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <span class="logo-mark">&#10047;</span>
+        <span class="logo-text">Beauti<strong>Pick</strong></span>
+      </div>
+      <p class="footer-tagline">
+        Your transparent skincare and beauty guide. Compare retailer prices and discover personalized routines powered by ingredient science.
+      </p>
+      <p class="footer-disclaimer-note">
+        <em>These are general suggestions, not medical advice. See a dermatologist for skin conditions.</em>
+      </p>
+    </div>
+
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="${pageContext.request.contextPath}/home">Home Showcase</a></li>
+          <li><a href="${pageContext.request.contextPath}/products">All Products</a></li>
+          <li><a href="${pageContext.request.contextPath}/quiz">Skin Care Quiz</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="${pageContext.request.contextPath}/products?category=Cleanser">Cleansers</a></li>
+          <li><a href="${pageContext.request.contextPath}/products?category=Moisturizer">Moisturizers</a></li>
+          <li><a href="${pageContext.request.contextPath}/products?category=Serum">Serums</a></li>
+          <li><a href="${pageContext.request.contextPath}/products?category=Sunscreen">Sunscreens</a></li>
+          <li><a href="${pageContext.request.contextPath}/products?category=Makeup">Hybrid Makeup</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; 2026 BeautiPick Web Portal. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
