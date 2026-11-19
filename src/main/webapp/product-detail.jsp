@@ -24,9 +24,18 @@
       <%-- Left: Product Showcase --%>
       <div class="detail-media">
         <div class="detail-image-box">
-          <img src="${pageContext.request.contextPath}/<c:out value="${product.imageUrl}"/>"
-               alt="<c:out value="${product.name}"/>"
-               class="detail-image" />
+          <c:choose>
+            <c:when test="${not empty product.imageUrl and (product.imageUrl.startsWith('http://') or product.imageUrl.startsWith('https://'))}">
+              <img src="<c:out value="${product.imageUrl}"/>"
+                   alt="<c:out value="${product.name}"/>"
+                   class="detail-image" />
+            </c:when>
+            <c:otherwise>
+              <img src="${pageContext.request.contextPath}/<c:out value="${not empty product.imageUrl ? product.imageUrl : 'images/placeholder.svg'}"/>"
+                   alt="<c:out value="${product.name}"/>"
+                   class="detail-image" />
+            </c:otherwise>
+          </c:choose>
           <span class="detail-category-badge"><c:out value="${product.category}"/></span>
         </div>
       </div>

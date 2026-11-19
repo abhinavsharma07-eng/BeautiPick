@@ -54,6 +54,25 @@ function initQuizProgress() {
   var steps = quizForm.querySelectorAll('.quiz-step');
   totalSteps = steps.length;
   updateProgressUI();
+
+  // Validate final step before form submission
+  quizForm.addEventListener('submit', function (e) {
+    var lastStepElem = quizForm.querySelector('.quiz-step[data-step="' + totalSteps + '"]');
+    if (!lastStepElem) return;
+
+    var inputs = lastStepElem.querySelectorAll('input.quiz-input');
+    var hasSelection = false;
+    inputs.forEach(function (input) {
+      if (input.checked) {
+        hasSelection = true;
+      }
+    });
+
+    if (!hasSelection) {
+      e.preventDefault();
+      alert('Please select an option to complete the quiz.');
+    }
+  });
 }
 
 function updateProgressUI() {
@@ -124,56 +143,45 @@ function goToPrevStep() {
   }
 }
 
+// Expose navigation functions to global scope for button onclick attributes
+window.goToNextStep = goToNextStep;
+window.goToPrevStep = goToPrevStep;
+
 /* ==========================================================================
    3. Option Card Interaction Sync (Radio & Checkbox)
    ========================================================================== */
 function initQuizCardSelection() {
-  var optionCards = document.querySelectorAll('.option-card');
-  if (!optionCards || optionCards.length === 0) return;
+  var quizForm = document.getElementById('quizForm');
+  if (!quizForm) return;
 
-  optionCards.forEach(function (card) {
+  function syncCard(card) {
+    if (!card) return;
     var input = card.querySelector('input.quiz-input');
-    if (!input) return;
-
-    // Synchronize initial state
-    if (input.checked) {
+    if (input && input.checked) {
       card.classList.add('selected');
+    } else {
+      card.classList.remove('selected');
     }
+  }
 
-    card.addEventListener('click', function (e) {
-      // If clicking directly on input, let default event handle it
-      if (e.target === input) return;
+  function syncGrid(grid) {
+    if (!grid) return;
+    var cards = grid.querySelectorAll('.option-card');
+    cards.forEach(syncCard);
+  }
 
-      if (input.type === 'radio') {
-        input.checked = true;
-        // Unselect siblings
-        var siblings = card.closest('.options-grid').querySelectorAll('.option-card');
-        siblings.forEach(function (sib) {
-          sib.classList.remove('selected');
-        });
-        card.classList.add('selected');
-      } else if (input.type === 'checkbox') {
-        input.checked = !input.checked;
-        if (input.checked) {
-          card.classList.add('selected');
-        } else {
-          card.classList.remove('selected');
-        }
-      }
-    });
+  // Handle change event triggered natively by <label> clicking or keyboard
+  quizForm.addEventListener('change', function (e) {
+    var input = e.target;
+    if (!input || !input.classList.contains('quiz-input')) return;
 
-    input.addEventListener('change', function () {
-      if (input.type === 'radio') {
-        var siblings = card.closest('.options-grid').querySelectorAll('.option-card');
-        siblings.forEach(function (sib) { sib.classList.remove('selected'); });
-        if (input.checked) card.classList.add('selected');
-      } else {
-        if (input.checked) {
-          card.classList.add('selected');
-        } else {
-          card.classList.remove('selected');
-        }
-      }
-    });
+    var grid = input.closest('.options-grid');
+    if (grid) {
+      syncGrid(grid);
+    }
   });
+
+  // Synchronize initial state on page load
+  var allGrids = quizForm.querySelectorAll('.options-grid');
+  allGrids.forEach(syncGrid);
 }

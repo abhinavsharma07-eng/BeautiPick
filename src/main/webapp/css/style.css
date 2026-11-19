@@ -1048,7 +1048,8 @@ img {
   background-color: #fdfbf9;
 }
 
-.option-card.selected {
+.option-card.selected,
+.option-card:has(.quiz-input:checked) {
   border-color: var(--color-primary);
   background-color: var(--color-primary-light);
 }
@@ -1083,12 +1084,14 @@ img {
   display: none;
 }
 
-.option-card.selected .option-indicator {
+.option-card.selected .option-indicator,
+.option-card:has(.quiz-input:checked) .option-indicator {
   background-color: var(--color-primary);
   border-color: var(--color-primary);
 }
 
-.option-card.selected .check-icon {
+.option-card.selected .check-icon,
+.option-card:has(.quiz-input:checked) .check-icon {
   display: block;
 }
 

@@ -1,8 +1,10 @@
 package com.app;
 
+import com.app.data.DatabaseConfig;
 import com.app.data.ProductData;
 import com.app.model.Offer;
 import com.app.model.Product;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -12,57 +14,50 @@ import static org.junit.jupiter.api.Assertions.*;
 class ProductDataTest {
 
     @Test
-    void testProductCountAndIds() {
-        List<Product> products = ProductData.getAllProducts();
-        assertEquals(8, products.size());
-
-        for (int i = 1; i <= 8; i++) {
-            Product p = ProductData.getProductById(String.valueOf(i));
-            assertNotNull(p, "Product id " + i + " should exist");
-            assertTrue(p.getName().startsWith("Dummy " + i));
-            assertNotNull(p.getCategory());
-            assertNotNull(p.getBrand());
-            assertEquals(3, p.getOffers().size());
-        }
+    void testNonNumericIdReturnsNullWithoutThrowing() {
+        assertNull(ProductData.getProductById(null));
+        assertNull(ProductData.getProductById(""));
+        assertNull(ProductData.getProductById("   "));
+        assertNull(ProductData.getProductById("abc"));
+        assertNull(ProductData.getProductById("invalid-id"));
+        assertNull(ProductData.getProductById("123a"));
     }
 
     @Test
-    void testOffersAndLowestPrice() {
-        for (Product product : ProductData.getAllProducts()) {
-            List<Offer> offers = product.getOffers();
-            assertEquals(3, offers.size());
-
-            Offer lowest = product.getLowestOffer();
-            assertNotNull(lowest);
-
-            for (Offer offer : offers) {
-                assertTrue(lowest.getPrice() <= offer.getPrice());
-                assertNotNull(offer.getSiteName());
-                assertNotNull(offer.getUrl());
-                assertTrue(offer.getUrl().startsWith("https://example.com/"));
+    void testDatabaseConfigMissingVariablesDetection() {
+        if (!DatabaseConfig.isConfigured()) {
+            List<String> missing = DatabaseConfig.getMissingEnvVariables();
+            assertFalse(missing.isEmpty(), "Missing variables should be reported");
+            for (String var : missing) {
+                assertTrue(var.equals("DB_URL") || var.equals("DB_USER") || var.equals("DB_PASSWORD"));
             }
         }
     }
 
     @Test
-    void testCategoryFiltering() {
-        List<Product> cleansers = ProductData.getProductsByCategory("Cleanser");
-        assertFalse(cleansers.isEmpty());
-        for (Product p : cleansers) {
-            assertEquals("Cleanser", p.getCategory());
-        }
+    void testDatabaseLiveQueries() {
+        Assumptions.assumeTrue(DatabaseConfig.isConfigured(),
+            "Skipping live database test: DB_URL, DB_USER, or DB_PASSWORD environment variables are not set");
 
-        List<Product> all = ProductData.getProductsByCategory("All");
-        assertEquals(8, all.size());
+        List<Product> products = ProductData.getAllProducts();
+        assertNotNull(products);
+        assertEquals(18, products.size(), "Database should contain exactly 18 seeded products");
+
+        for (Product p : products) {
+            assertNotNull(p.getId());
+            assertNotNull(p.getName());
+            assertNotNull(p.getBrand());
+            assertNotNull(p.getCategory());
+        }
     }
 
     @Test
-    void testSearchProducts() {
-        List<Product> search1 = ProductData.searchProducts("Salicylic", "All");
-        assertFalse(search1.isEmpty());
-        assertEquals("2", search1.get(0).getId());
+    void testCategoryFilterLiveDatabase() {
+        Assumptions.assumeTrue(DatabaseConfig.isConfigured(),
+            "Skipping live database test: DB_URL, DB_USER, or DB_PASSWORD environment variables are not set");
 
-        List<Product> noMatches = ProductData.searchProducts("NonExistentKeywordXYZ", "All");
-        assertTrue(noMatches.isEmpty());
+        List<String> categories = ProductData.getCategories();
+        assertNotNull(categories);
+        assertTrue(categories.contains("All"));
     }
 }

@@ -12,10 +12,20 @@
 
 <div class="product-card" data-category="<c:out value="${cardItem.category}"/>">
   <div class="card-image-wrap">
-    <img src="${pageContext.request.contextPath}/<c:out value="${cardItem.imageUrl}"/>"
-         alt="<c:out value="${cardItem.name}"/>"
-         class="product-image"
-         loading="lazy" />
+    <c:choose>
+      <c:when test="${not empty cardItem.imageUrl and (cardItem.imageUrl.startsWith('http://') or cardItem.imageUrl.startsWith('https://'))}">
+        <img src="<c:out value="${cardItem.imageUrl}"/>"
+             alt="<c:out value="${cardItem.name}"/>"
+             class="product-image"
+             loading="lazy" />
+      </c:when>
+      <c:otherwise>
+        <img src="${pageContext.request.contextPath}/<c:out value="${not empty cardItem.imageUrl ? cardItem.imageUrl : 'images/placeholder.svg'}"/>"
+             alt="<c:out value="${cardItem.name}"/>"
+             class="product-image"
+             loading="lazy" />
+      </c:otherwise>
+    </c:choose>
     <span class="category-pill"><c:out value="${cardItem.category}"/></span>
   </div>
 
