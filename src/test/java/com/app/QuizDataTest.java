@@ -2,18 +2,22 @@ package com.app;
 
 import com.app.data.QuizData;
 import com.app.model.QuizQuestion;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class QuizDataTest extends TestCase {
+import static org.junit.jupiter.api.Assertions.*;
 
-    public void testQuestionsCount() {
+class QuizDataTest {
+
+    @Test
+    void testQuestionsCount() {
         List<QuizQuestion> questions = QuizData.getQuestions();
         assertEquals(6, questions.size());
     }
 
-    public void testValidations() {
+    @Test
+    void testValidations() {
         assertTrue(QuizData.isValidSkinType("oily"));
         assertTrue(QuizData.isValidSkinType("dry"));
         assertTrue(QuizData.isValidSkinType("combination"));

@@ -3,22 +3,24 @@ package com.app;
 import com.app.model.QuizSubmission;
 import com.app.model.RecommendationResult;
 import com.app.service.RecommendationService;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.*;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-public class RecommendationServiceTest extends TestCase {
+import static org.junit.jupiter.api.Assertions.*;
+
+class RecommendationServiceTest {
 
     private RecommendationService service;
 
-    protected void setUp() throws Exception {
-        super.setUp();
+    @BeforeEach
+    void setUp() {
         service = new RecommendationService();
     }
 
-    public void testRecommendationsForOilyAcneSkin() {
+    @Test
+    void testRecommendationsForOilyAcneSkin() {
         QuizSubmission sub = new QuizSubmission(
             "oily",
             Arrays.asList("acne"),
@@ -29,15 +31,16 @@ public class RecommendationServiceTest extends TestCase {
         );
 
         List<RecommendationResult> results = service.getRecommendations(sub);
-        assertFalse("Should return recommendations", results.isEmpty());
+        assertFalse(results.isEmpty(), "Should return recommendations");
 
         RecommendationResult top = results.get(0);
-        assertTrue("Top match should have positive score", top.getScore() > 0);
-        assertNotNull("Should have match reason", top.getMatchReason());
-        assertTrue("Reason should contain match text", top.getMatchReason().toLowerCase().contains("matches you"));
+        assertTrue(top.getScore() > 0, "Top match should have positive score");
+        assertNotNull(top.getMatchReason(), "Should have match reason");
+        assertTrue(top.getMatchReason().toLowerCase().contains("matches you"), "Reason should contain match text");
     }
 
-    public void testCategoryFilteringInRecommendation() {
+    @Test
+    void testCategoryFilteringInRecommendation() {
         QuizSubmission sub = new QuizSubmission(
             "dry",
             Arrays.asList("dryness"),
@@ -54,7 +57,8 @@ public class RecommendationServiceTest extends TestCase {
         }
     }
 
-    public void testEmptySubmission() {
+    @Test
+    void testEmptySubmission() {
         List<RecommendationResult> results = service.getRecommendations(null);
         assertNotNull(results);
         assertTrue(results.isEmpty());
