@@ -1,5 +1,9 @@
 package com.app.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +11,10 @@ import java.util.List;
 /**
  * Encapsulates the user's validated answers to the skincare quiz.
  */
+@Setter
+@Getter
 public class QuizSubmission implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private String skinType;
@@ -29,54 +36,6 @@ public class QuizSubmission implements Serializable {
         this.ageGroup = ageGroup;
         this.sensitiveAllergies = sensitiveAllergies;
         this.budget = budget;
-        this.categoryWanted = categoryWanted;
-    }
-
-    public String getSkinType() {
-        return skinType;
-    }
-
-    public void setSkinType(String skinType) {
-        this.skinType = skinType;
-    }
-
-    public List<String> getConcerns() {
-        return concerns;
-    }
-
-    public void setConcerns(List<String> concerns) {
-        this.concerns = concerns;
-    }
-
-    public String getAgeGroup() {
-        return ageGroup;
-    }
-
-    public void setAgeGroup(String ageGroup) {
-        this.ageGroup = ageGroup;
-    }
-
-    public String getSensitiveAllergies() {
-        return sensitiveAllergies;
-    }
-
-    public void setSensitiveAllergies(String sensitiveAllergies) {
-        this.sensitiveAllergies = sensitiveAllergies;
-    }
-
-    public String getBudget() {
-        return budget;
-    }
-
-    public void setBudget(String budget) {
-        this.budget = budget;
-    }
-
-    public String getCategoryWanted() {
-        return categoryWanted;
-    }
-
-    public void setCategoryWanted(String categoryWanted) {
         this.categoryWanted = categoryWanted;
     }
 }

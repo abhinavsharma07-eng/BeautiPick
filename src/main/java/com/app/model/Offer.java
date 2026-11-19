@@ -1,5 +1,8 @@
 package com.app.model;
 
+import lombok.*;
+
+import java.io.Serial;
 import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -7,7 +10,10 @@ import java.util.Locale;
 /**
  * Represents a seller offer for a product with pricing and outbound link.
  */
+@Getter
+@Setter
 public class Offer implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private String siteName;
@@ -20,30 +26,6 @@ public class Offer implements Serializable {
     public Offer(String siteName, double price, String url) {
         this.siteName = siteName;
         this.price = price;
-        this.url = url;
-    }
-
-    public String getSiteName() {
-        return siteName;
-    }
-
-    public void setSiteName(String siteName) {
-        this.siteName = siteName;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
         this.url = url;
     }
 

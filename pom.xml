@@ -35,8 +35,29 @@
       <artifactId>jakarta.servlet.jsp.jstl</artifactId>
       <version>3.0.1</version>
     </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.48</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
   <build>
     <finalName>BeautiPick</finalName>
+    <plugins>
+      <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-compiler-plugin</artifactId>
+      <version>3.13.0</version>
+      <configuration>
+        <annotationProcessorPaths>
+          <path>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.48</version>
+          </path>
+        </annotationProcessorPaths>
+      </configuration>
+    </plugin></plugins>
   </build>
 </project>

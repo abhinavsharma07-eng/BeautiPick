@@ -1,11 +1,16 @@
 package com.app.model;
 
+import lombok.Data;
+
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
  * An option in a quiz question.
  */
+@Data
 public class QuizOption implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private String value;
@@ -25,27 +30,4 @@ public class QuizOption implements Serializable {
         this.description = description;
     }
 
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

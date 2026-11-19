@@ -1,5 +1,8 @@
 package com.app.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +10,8 @@ import java.util.List;
 /**
  * Represents a single question in the skincare quiz.
  */
+@Getter
+@Setter
 public class QuizQuestion implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -27,45 +32,5 @@ public class QuizQuestion implements Serializable {
         if (options != null) {
             this.options = new ArrayList<>(options);
         }
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getSubtitle() {
-        return subtitle;
-    }
-
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
-    }
-
-    public boolean isMultiSelect() {
-        return multiSelect;
-    }
-
-    public void setMultiSelect(boolean multiSelect) {
-        this.multiSelect = multiSelect;
-    }
-
-    public List<QuizOption> getOptions() {
-        return options;
-    }
-
-    public void setOptions(List<QuizOption> options) {
-        this.options = options;
     }
 }
