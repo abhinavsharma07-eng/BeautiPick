@@ -1,6 +1,4 @@
-
 #!/bin/sh
-
 set -e
 
 PORT="${PORT:-10000}"
