@@ -12,7 +12,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BeautiPick - Skincare Price Comparison &amp; Recommendations</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=1.1">
 </head>
 <body>
 
@@ -48,6 +48,9 @@
           <h2 class="section-title">Available Products</h2>
           <p class="section-subtitle">Real-time pricing from verified beauty stockists. Updated daily.</p>
         </div>
+        <a href="${pageContext.request.contextPath}/products" class="section-header-link">
+          View All Products &rarr;
+        </a>
       </div>
 
       <%-- Category Filter Chips --%>
@@ -63,9 +66,19 @@
 
       <%-- Product Grid --%>
       <div class="product-grid" id="productGrid">
-        <c:forEach var="product" items="${products}">
+        <c:forEach var="showcaseProduct" items="${products}" end="7">
+          <c:set var="cardProduct" value="${showcaseProduct}" />
           <%@ include file="/WEB-INF/fragments/product-card.jspf" %>
         </c:forEach>
+      </div>
+
+      <%-- Showcase Action: Link to browse full catalogue --%>
+      <div class="showcase-cta" style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 44px auto 16px auto; text-align: center;">
+        <a href="${pageContext.request.contextPath}/products"
+           class="btn btn-primary btn-large btn-browse-all"
+           style="display: inline-flex; align-items: center; justify-content: center; min-width: 230px; height: 46px; padding: 0 32px; font-size: 14.5px; font-weight: 600; border-radius: 9999px; margin: 0 auto; text-decoration: none; box-shadow: 0 2px 8px rgba(168, 88, 72, 0.22);">
+          Browse All Products &rsaquo;
+        </a>
       </div>
     </section>
   </main>

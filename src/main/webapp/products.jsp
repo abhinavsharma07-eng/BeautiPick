@@ -12,7 +12,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Browse Products &amp; Compare Prices - BeautiPick</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=1.1">
 </head>
 <body>
 
@@ -61,7 +61,8 @@
           <span>Showing <c:out value="${products.size()}"/> products</span>
         </div>
         <div class="product-grid">
-          <c:forEach var="product" items="${products}">
+          <c:forEach var="catalogProduct" items="${products}">
+            <c:set var="cardProduct" value="${catalogProduct}" />
             <%@ include file="/WEB-INF/fragments/product-card.jspf" %>
           </c:forEach>
         </div>

@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><c:out value="${product.name}"/> - Price Comparison | BeautiPick</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=1.1">
 </head>
 <body>
 
@@ -66,9 +66,16 @@
         <div class="detail-meta-group">
           <h4>Targeted Skin Types:</h4>
           <div class="skin-types-list">
-            <c:forEach var="st" items="${product.skinTypes}">
-              <span class="skin-type-tag"><c:out value="${st}"/></span>
-            </c:forEach>
+            <c:choose>
+              <c:when test="${not empty product.skinTypes}">
+                <c:forEach var="st" items="${product.skinTypes}">
+                  <span class="skin-type-tag"><c:out value="${st}"/></span>
+                </c:forEach>
+              </c:when>
+              <c:otherwise>
+                <span class="skin-type-tag">All Skin Types</span>
+              </c:otherwise>
+            </c:choose>
             <c:if test="${product.suitableForSensitive}">
               <span class="skin-type-tag sensitive-safe">&#10003; Sensitive Safe</span>
             </c:if>

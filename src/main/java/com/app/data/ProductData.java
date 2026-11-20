@@ -56,6 +56,18 @@ public class ProductData {
 
                 if (isEmpty) {
                     executeSqlScript(conn, "seed.sql");
+                } else {
+                    // Check if skin_type attributes are present in existing database
+                    boolean hasSkinTypes = false;
+                    try (ResultSet rs = st.executeQuery("SELECT COUNT(*) FROM product_attributes WHERE kind = 'skin_type'")) {
+                        if (rs.next()) {
+                            hasSkinTypes = (rs.getInt(1) > 0);
+                        }
+                    } catch (SQLException ignored) {
+                    }
+                    if (!hasSkinTypes) {
+                        executeSqlScript(conn, "migration_skin_types.sql");
+                    }
                 }
 
                 try (ResultSet checkRs = st.executeQuery("SELECT COUNT(*) FROM products")) {

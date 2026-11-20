@@ -49,6 +49,17 @@ class ProductDataTest {
             assertNotNull(p.getBrand());
             assertNotNull(p.getCategory());
         }
+
+        boolean anyHasSkinType = products.stream().anyMatch(p -> !p.getSkinTypes().isEmpty());
+        assertTrue(anyHasSkinType, "Products should have targeted skin types populated");
+
+        Product p1 = ProductData.getProductById("1");
+        assertNotNull(p1);
+        assertFalse(p1.getSkinTypes().isEmpty(), "Product 1 should have skin types");
+
+        Product p13 = ProductData.getProductById("13");
+        assertNotNull(p13);
+        assertTrue(p13.isSuitableForSensitive(), "Product 13 should be sensitive safe");
     }
 
     @Test

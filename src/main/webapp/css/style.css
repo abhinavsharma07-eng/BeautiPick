@@ -112,8 +112,9 @@ img {
 }
 
 .btn-large {
-  padding: 14px 28px;
-  font-size: 15px;
+  padding: 12px 26px;
+  font-size: 14.5px;
+  min-height: 46px;
   border-radius: var(--radius-md);
 }
 
@@ -270,16 +271,27 @@ img {
   flex-wrap: wrap;
 }
 
+.hero-actions .btn {
+  min-width: 190px;
+  height: 48px;
+  padding: 0 24px;
+}
+
 /* ==========================================================================
    Showcase & Product Grid
    ========================================================================== */
 
 .showcase-section {
-  padding: 40px 20px 60px 20px;
+  padding: 40px 20px 30px 20px;
 }
 
 .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   margin-bottom: 22px;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .section-title {
@@ -293,6 +305,23 @@ img {
   font-size: 14.5px;
   color: var(--color-text-muted);
   margin-top: 4px;
+}
+
+.section-header-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding-bottom: 4px;
+  transition: var(--transition);
+}
+
+.section-header-link:hover {
+  color: var(--color-primary-hover);
+  transform: translateX(2px);
 }
 
 /* Category Filter Chips */
@@ -332,6 +361,35 @@ img {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 24px;
+}
+
+.showcase-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 44px auto 16px auto;
+  text-align: center;
+}
+
+.btn-browse-all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 230px;
+  height: 46px;
+  padding: 0 32px;
+  font-size: 14.5px;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  margin: 0 auto;
+  box-shadow: 0 2px 8px rgba(168, 88, 72, 0.22);
+  transition: var(--transition);
+}
+
+.btn-browse-all:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(168, 88, 72, 0.32);
 }
 
 /* Product Card */
@@ -477,8 +535,10 @@ img {
 }
 
 .btn-card {
-  padding: 8px 12px;
+  height: 34px;
+  padding: 0 14px;
   font-size: 12.5px;
+  border-radius: var(--radius-sm);
 }
 
 /* ==========================================================================
@@ -547,7 +607,8 @@ img {
 
 .search-input {
   flex: 1;
-  padding: 9px 14px;
+  height: 40px;
+  padding: 0 14px;
   font-size: 14px;
   font-family: inherit;
   border: 1px solid var(--color-border);
@@ -564,7 +625,8 @@ img {
 }
 
 .btn-search {
-  padding: 9px 16px;
+  height: 40px;
+  padding: 0 18px;
   font-size: 13.5px;
   background-color: var(--color-text-main);
   color: #ffffff;
@@ -572,6 +634,9 @@ img {
   border: none;
   cursor: pointer;
   font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-search:hover {
@@ -591,7 +656,8 @@ img {
 }
 
 .filter-select {
-  padding: 9px 14px;
+  height: 40px;
+  padding: 0 14px;
   font-size: 14px;
   font-family: inherit;
   border: 1px solid var(--color-border);
@@ -1057,7 +1123,9 @@ img {
 .quiz-input {
   position: absolute;
   opacity: 0;
-  pointer-events: none;
+  width: 0;
+  height: 0;
+  pointer-events: auto;
 }
 
 .option-indicator {
@@ -1124,21 +1192,31 @@ img {
   background: transparent;
   border: 1px solid var(--color-border);
   color: var(--color-text-muted);
-  padding: 10px 18px;
+  height: 42px;
+  padding: 0 20px;
   font-size: 14px;
   font-weight: 600;
   border-radius: var(--radius-sm);
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-step-prev:hover {
   background-color: #f2ece6;
   color: var(--color-text-main);
+  border-color: #d8cec4;
 }
 
 .btn-step-next, .btn-submit-quiz {
-  padding: 10px 22px;
+  height: 42px;
+  padding: 0 24px;
   font-size: 14px;
+  min-width: 150px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .quiz-disclaimer-card {
@@ -1280,7 +1358,7 @@ img {
 .site-footer {
   background-color: #211c1b;
   color: #d1c8c2;
-  margin-top: 60px;
+  margin-top: 40px;
   padding: 50px 0 0 0;
   border-top: 1px solid #362e2c;
 }
