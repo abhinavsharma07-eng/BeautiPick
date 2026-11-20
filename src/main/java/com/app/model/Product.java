@@ -78,7 +78,7 @@ public class Product implements Serializable {
         if (lowest != null) {
             return lowest.getFormattedPrice();
         }
-        return NumberFormat.getCurrencyInstance(Locale.US).format(0.0);
+        return NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(0.0);
     }
 
     public List<Offer> getSortedOffers() {

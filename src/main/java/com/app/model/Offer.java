@@ -30,7 +30,7 @@ public class Offer implements Serializable {
     }
 
     public String getFormattedPrice() {
-        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
         return currencyFormat.format(price);
     }
 }
