@@ -12,7 +12,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Browse Products &amp; Compare Prices - BeautiPick</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=1.1">
+  <%-- item 23: favicon --%>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#10047;</text></svg>">
+  <%-- item 25: bump to v=1.2 --%>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=1.2">
 </head>
 <body>
 

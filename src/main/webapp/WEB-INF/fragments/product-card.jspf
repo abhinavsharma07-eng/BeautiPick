@@ -44,6 +44,7 @@
       </div>
     </c:if>
 
+    <%-- item 11: flex-wrap on .card-footer-pricing (CSS); btn-card is flex: 1 1 auto --%>
     <div class="card-footer-pricing">
       <div class="price-block">
         <span class="price-label">Lowest Price</span>

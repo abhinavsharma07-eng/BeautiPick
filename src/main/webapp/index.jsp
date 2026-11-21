@@ -12,7 +12,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BeautiPick - Skincare Price Comparison &amp; Recommendations</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=1.1">
+  <%-- item 23: favicon using ✿ SVG data URI --%>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#10047;</text></svg>">
+  <%-- item 25: bump CSS version to 1.2 --%>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=1.2">
 </head>
 <body>
 
@@ -24,11 +27,13 @@
     <section class="hero-section">
       <div class="container hero-content">
         <span class="hero-badge">Smart Skincare Shopping</span>
+        <%-- item 15: shortened hero-headline (≤60 chars); rest moved to hero-subtext --%>
         <h1 class="hero-headline">
-          Discover your best skin with proven formulas and genuine price comparisons across top beauty retailers.
+          Your best skin, at the best price.
         </h1>
         <p class="hero-subtext">
-          Compare real-time prices across trusted sites or get a custom routine curated for your skin profile.
+          Discover proven formulas with genuine price comparisons across top beauty retailers.
+          Compare prices or get a custom routine curated for your skin profile — updated daily.
         </p>
         <div class="hero-actions">
           <a href="${pageContext.request.contextPath}/products" class="btn btn-primary btn-large">
@@ -46,7 +51,8 @@
       <div class="section-header">
         <div>
           <h2 class="section-title">Available Products</h2>
-          <p class="section-subtitle">Real-time pricing from verified beauty stockists. Updated daily.</p>
+          <%-- item 15: removed contradictory "Real-time pricing" claim; use only "Updated daily" --%>
+          <p class="section-subtitle">Prices from verified beauty stockists — updated daily.</p>
         </div>
         <a href="${pageContext.request.contextPath}/products" class="section-header-link">
           View All Products &rarr;
@@ -71,12 +77,15 @@
           <%@ include file="/WEB-INF/fragments/product-card.jspf" %>
         </c:forEach>
       </div>
+      <%-- item 14: empty-category message (shown via JS when filter returns 0 cards) --%>
+      <p id="emptyCategoryMsg" class="empty-category-msg" role="status" aria-live="polite">
+        No products in this category yet.
+      </p>
 
-      <%-- Showcase Action: Link to browse full catalogue --%>
-      <div class="showcase-cta" style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 44px auto 16px auto; text-align: center;">
+      <%-- item 24: removed inline styles — all styles live in CSS classes --%>
+      <div class="showcase-cta">
         <a href="${pageContext.request.contextPath}/products"
-           class="btn btn-primary btn-large btn-browse-all"
-           style="display: inline-flex; align-items: center; justify-content: center; min-width: 230px; height: 46px; padding: 0 32px; font-size: 14.5px; font-weight: 600; border-radius: 9999px; margin: 0 auto; text-decoration: none; box-shadow: 0 2px 8px rgba(168, 88, 72, 0.22);">
+           class="btn btn-primary btn-large btn-browse-all">
           Browse All Products &rsaquo;
         </a>
       </div>

@@ -6,7 +6,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><c:out value="${product.name}"/> - Price Comparison | BeautiPick</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=1.1">
+  <%-- item 23: favicon --%>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#10047;</text></svg>">
+  <%-- item 25: bump to v=1.2 --%>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=1.2">
 </head>
 <body>
 
@@ -45,6 +48,7 @@
         <span class="detail-brand"><c:out value="${product.brand}"/></span>
         <h1 class="detail-title"><c:out value="${product.name}"/></h1>
 
+        <%-- item 6: flex-wrap added in CSS for .detail-price-hero --%>
         <div class="detail-price-hero">
           <span class="detail-price-label">Best Available Price:</span>
           <span class="detail-price-val"><c:out value="${product.formattedLowestPrice}"/></span>
@@ -83,6 +87,7 @@
         </div>
 
         <%-- Retailer Price Comparison Table --%>
+        <%-- item 2: thead visually hidden on mobile via CSS; stacked card rows --%>
         <div class="price-comparison-section">
           <h2 class="comparison-title">Compare Prices Across Retailers</h2>
           <p class="comparison-subtitle">Offers are sorted by price ascending. Buy direct from the seller.</p>

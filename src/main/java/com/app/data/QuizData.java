@@ -106,9 +106,9 @@ public class QuizData {
             "We match products with verified retailer deals across all price tiers.",
             false,
             Arrays.asList(
-                new QuizOption("low", "Budget Friendly (Under $20)", "High-value, accessible staples"),
-                new QuizOption("medium", "Mid-Range ($20 - $35)", "Proven derm-grade active formulations"),
-                new QuizOption("high", "Premium / Luxury ($35+)", "High-concentration clinical & luxury botanicals")
+                new QuizOption("low", "Budget Friendly", "High-value, accessible staples"),
+                new QuizOption("medium", "Mid-Range", "Proven derm-grade active formulations"),
+                new QuizOption("high", "Premium / Luxury (₹35+)", "High-concentration clinical & luxury botanicals")
             )
         ));
 

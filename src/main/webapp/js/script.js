@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /* ==========================================================================
-   1. Landing Page Category Filtering
+   1. Landing Page Category Filtering (item 14: show empty-category-msg)
    ========================================================================== */
 function initCategoryChips() {
   var chipBar = document.getElementById('categoryChips');
@@ -19,6 +19,7 @@ function initCategoryChips() {
 
   var chips = chipBar.querySelectorAll('.chip');
   var cards = grid.querySelectorAll('.product-card');
+  var emptyMsg = document.getElementById('emptyCategoryMsg');
 
   chips.forEach(function (chip) {
     chip.addEventListener('click', function () {
@@ -29,14 +30,21 @@ function initCategoryChips() {
       this.classList.add('active');
 
       // Filter product cards
+      var visibleCount = 0;
       cards.forEach(function (card) {
         var cardCat = card.getAttribute('data-category');
         if (!filter || filter === 'All' || cardCat === filter) {
           card.style.display = 'flex';
+          visibleCount++;
         } else {
           card.style.display = 'none';
         }
       });
+
+      // item 14: toggle empty-category message
+      if (emptyMsg) {
+        emptyMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
     });
   });
 }
@@ -55,7 +63,7 @@ function initQuizProgress() {
   totalSteps = steps.length;
   updateProgressUI();
 
-  // Validate final step before form submission
+  // Validate final step before form submission (item 20: inline alert)
   quizForm.addEventListener('submit', function (e) {
     var lastStepElem = quizForm.querySelector('.quiz-step[data-step="' + totalSteps + '"]');
     if (!lastStepElem) return;
@@ -70,9 +78,25 @@ function initQuizProgress() {
 
     if (!hasSelection) {
       e.preventDefault();
-      alert('Please select an option to complete the quiz.');
+      showQuizAlert(lastStepElem, 'Please select an option to complete the quiz.');
     }
   });
+}
+
+/* item 20: show inline alert message above Next button */
+function showQuizAlert(stepElem, message) {
+  var alertEl = stepElem.querySelector('.quiz-inline-alert');
+  if (!alertEl) return;
+  alertEl.textContent = message;
+  alertEl.style.display = 'block';
+  alertEl.focus();
+}
+
+function hideQuizAlert(stepElem) {
+  var alertEl = stepElem && stepElem.querySelector('.quiz-inline-alert');
+  if (alertEl) {
+    alertEl.style.display = 'none';
+  }
 }
 
 function updateProgressUI() {
@@ -107,9 +131,13 @@ function goToNextStep() {
   });
 
   if (!hasSelection) {
-    alert('Please select an option to continue to the next step.');
+    // item 20: inline message instead of alert()
+    showQuizAlert(currentStepElem, 'Please select an option to continue to the next step.');
     return;
   }
+
+  // Clear any previous alert
+  hideQuizAlert(currentStepElem);
 
   if (currentStep < totalSteps) {
     currentStepElem.classList.remove('active-step');
@@ -118,7 +146,7 @@ function goToNextStep() {
     if (nextStepElem) {
       nextStepElem.classList.add('active-step');
       updateProgressUI();
-      // Scroll smoothly to top of form
+      // item 4: scroll smoothly to form (scroll-margin-top handles header offset)
       quizForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
@@ -131,6 +159,7 @@ function goToPrevStep() {
   if (currentStep > 1) {
     var currentStepElem = quizForm.querySelector('.quiz-step[data-step="' + currentStep + '"]');
     if (currentStepElem) {
+      hideQuizAlert(currentStepElem);
       currentStepElem.classList.remove('active-step');
     }
     currentStep--;
@@ -138,6 +167,7 @@ function goToPrevStep() {
     if (prevStepElem) {
       prevStepElem.classList.add('active-step');
       updateProgressUI();
+      // item 4: scroll-margin-top handles sticky header
       quizForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
@@ -179,6 +209,10 @@ function initQuizCardSelection() {
     if (grid) {
       syncGrid(grid);
     }
+
+    // Clear inline alert when user makes a selection
+    var stepElem = input.closest('.quiz-step');
+    hideQuizAlert(stepElem);
   });
 
   // Synchronize initial state on page load

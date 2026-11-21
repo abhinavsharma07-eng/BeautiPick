@@ -9,7 +9,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skin Care Quiz &amp; Recommendations - BeautiPick</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=1.1">
+  <%-- item 23: favicon --%>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#10047;</text></svg>">
+  <%-- item 25: bump to v=1.2 --%>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=1.2">
 </head>
 <body>
 
@@ -47,7 +50,7 @@
         </div>
       </div>
 
-      <%-- Quiz Form --%>
+      <%-- Quiz Form (item 4: scroll-margin-top set in CSS on #quizForm) --%>
       <form id="quizForm" action="${pageContext.request.contextPath}/quiz" method="POST" class="quiz-card-form">
         <c:forEach var="q" items="${questions}" varStatus="status">
           <div class="quiz-step ${status.first ? 'active-step' : ''}" data-step="<c:out value="${status.index + 1}"/>">
@@ -100,18 +103,22 @@
                 <div></div> <%-- Spacer to keep Next on the right --%>
               </c:if>
 
-              <c:choose>
-                <c:when test="${status.last}">
-                  <button type="submit" class="btn btn-primary btn-submit-quiz">
-                    Get Recommendations &rsaquo;
-                  </button>
-                </c:when>
-                <c:otherwise>
-                  <button type="button" class="btn btn-primary btn-step-next" onclick="goToNextStep()">
-                    Next Question &rarr;
-                  </button>
-                </c:otherwise>
-              </c:choose>
+              <%-- item 20: inline validation alert above the Next / Submit button --%>
+              <div style="display:contents">
+                <div class="quiz-inline-alert" role="alert" tabindex="-1" aria-live="assertive"></div>
+                <c:choose>
+                  <c:when test="${status.last}">
+                    <button type="submit" class="btn btn-primary btn-submit-quiz">
+                      Get Recommendations &rsaquo;
+                    </button>
+                  </c:when>
+                  <c:otherwise>
+                    <button type="button" class="btn btn-primary btn-step-next" onclick="goToNextStep()">
+                      Next Question &rarr;
+                    </button>
+                  </c:otherwise>
+                </c:choose>
+              </div>
             </div>
           </div>
         </c:forEach>

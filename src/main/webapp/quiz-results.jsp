@@ -6,7 +6,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Personalized Recommendations - BeautiPick</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=1.1">
+  <%-- item 23: favicon --%>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#10047;</text></svg>">
+  <%-- item 25: bump to v=1.2 --%>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=1.2">
 </head>
 <body>
 
@@ -28,7 +31,7 @@
         Scored against your skin type, primary concerns, and preferences to maximize routine compatibility.
       </p>
 
-      <%-- Mandatory One-line medical disclaimer --%>
+      <%-- Mandatory One-line medical disclaimer (item 9: border-radius + text-align left) --%>
       <div class="medical-notice-bar">
         <span class="notice-icon">&#9888;</span>
         <span class="notice-text">
@@ -39,17 +42,82 @@
 
     <%-- Summary of User's Quiz Profile --%>
     <c:if test="${not empty submission}">
+      <%--
+        item 17: human-readable label mapping (display-only, raw values unchanged).
+        Mapping is done here in JSP with c:choose. QuizData.java is NOT modified.
+      --%>
+      <c:set var="rawSkinType" value="${submission.skinType}" />
+      <c:choose>
+        <c:when test="${rawSkinType eq 'oily'}"><c:set var="labelSkinType" value="Oily" /></c:when>
+        <c:when test="${rawSkinType eq 'dry'}"><c:set var="labelSkinType" value="Dry" /></c:when>
+        <c:when test="${rawSkinType eq 'combination'}"><c:set var="labelSkinType" value="Combination" /></c:when>
+        <c:when test="${rawSkinType eq 'sensitive'}"><c:set var="labelSkinType" value="Sensitive" /></c:when>
+        <c:when test="${rawSkinType eq 'normal'}"><c:set var="labelSkinType" value="Normal" /></c:when>
+        <c:otherwise><c:set var="labelSkinType" value="${rawSkinType}" /></c:otherwise>
+      </c:choose>
+
+      <c:set var="rawAge" value="${submission.ageGroup}" />
+      <c:choose>
+        <c:when test="${rawAge eq 'under-20'}"><c:set var="labelAge" value="Under 20" /></c:when>
+        <c:when test="${rawAge eq '20-30'}"><c:set var="labelAge" value="20–30" /></c:when>
+        <c:when test="${rawAge eq '30-40'}"><c:set var="labelAge" value="30–40" /></c:when>
+        <c:when test="${rawAge eq '40-50'}"><c:set var="labelAge" value="40–50" /></c:when>
+        <c:when test="${rawAge eq '50+'}"><c:set var="labelAge" value="50 &amp; above" /></c:when>
+        <c:otherwise><c:set var="labelAge" value="${rawAge}" /></c:otherwise>
+      </c:choose>
+
+      <c:set var="rawBudget" value="${submission.budget}" />
+      <c:choose>
+        <c:when test="${rawBudget eq 'low'}"><c:set var="labelBudget" value="Budget-friendly" /></c:when>
+        <c:when test="${rawBudget eq 'medium'}"><c:set var="labelBudget" value="Mid-range" /></c:when>
+        <c:when test="${rawBudget eq 'high'}"><c:set var="labelBudget" value="Premium" /></c:when>
+        <c:otherwise><c:set var="labelBudget" value="${rawBudget}" /></c:otherwise>
+      </c:choose>
+
+      <c:set var="rawCategory" value="${submission.categoryWanted}" />
+      <c:choose>
+        <c:when test="${rawCategory eq 'any'}"><c:set var="labelCategory" value="Any Category" /></c:when>
+        <c:when test="${rawCategory eq 'cleanser'}"><c:set var="labelCategory" value="Cleanser" /></c:when>
+        <c:when test="${rawCategory eq 'moisturizer'}"><c:set var="labelCategory" value="Moisturizer" /></c:when>
+        <c:when test="${rawCategory eq 'serum'}"><c:set var="labelCategory" value="Serum" /></c:when>
+        <c:when test="${rawCategory eq 'sunscreen'}"><c:set var="labelCategory" value="Sunscreen" /></c:when>
+        <c:when test="${rawCategory eq 'makeup'}"><c:set var="labelCategory" value="Makeup" /></c:when>
+        <c:otherwise><c:set var="labelCategory" value="${rawCategory}" /></c:otherwise>
+      </c:choose>
+
+      <%-- Concern label map --%>
+      <c:set var="concernLabelMap" value="${{
+        'dark spots': 'Dark Spots',
+        'acne': 'Acne',
+        'anti-aging': 'Anti-Aging',
+        'hydration': 'Hydration',
+        'redness': 'Redness',
+        'pores': 'Pores',
+        'brightening': 'Brightening'
+      }}" />
+
       <div class="profile-summary-box">
-        <h3 class="profile-summary-title">Your Profile Profile Summary:</h3>
+        <%-- item 16: fixed "Profile Profile Summary:" → "Profile Summary" --%>
+        <h3 class="profile-summary-title">Your Profile Summary</h3>
         <div class="profile-tags-row">
-          <span class="profile-tag"><strong>Skin Type:</strong> <c:out value="${submission.skinType}"/></span>
-          <span class="profile-tag"><strong>Age:</strong> <c:out value="${submission.ageGroup}"/></span>
-          <span class="profile-tag"><strong>Budget:</strong> <c:out value="${submission.budget}"/></span>
-          <span class="profile-tag"><strong>Looking For:</strong> <c:out value="${submission.categoryWanted}"/></span>
+          <span class="profile-tag"><strong>Skin Type:</strong> <c:out value="${labelSkinType}"/></span>
+          <span class="profile-tag"><strong>Age:</strong> <c:out value="${labelAge}"/></span>
+          <span class="profile-tag"><strong>Budget:</strong> <c:out value="${labelBudget}"/></span>
+          <span class="profile-tag"><strong>Looking For:</strong> <c:out value="${labelCategory}"/></span>
           <c:if test="${not empty submission.concerns}">
             <span class="profile-tag"><strong>Concerns:</strong>
               <c:forEach var="c" items="${submission.concerns}" varStatus="cs">
-                <c:out value="${c}"/><c:if test="${!cs.last}">, </c:if>
+                <%-- item 17: map concern raw values to human labels --%>
+                <c:choose>
+                  <c:when test="${c eq 'dark spots'}">Dark Spots</c:when>
+                  <c:when test="${c eq 'acne'}">Acne</c:when>
+                  <c:when test="${c eq 'anti-aging'}">Anti-Aging</c:when>
+                  <c:when test="${c eq 'hydration'}">Hydration</c:when>
+                  <c:when test="${c eq 'redness'}">Redness</c:when>
+                  <c:when test="${c eq 'pores'}">Pores</c:when>
+                  <c:when test="${c eq 'brightening'}">Brightening</c:when>
+                  <c:otherwise><c:out value="${c}"/></c:otherwise>
+                </c:choose><c:if test="${!cs.last}">, </c:if>
               </c:forEach>
             </span>
           </c:if>

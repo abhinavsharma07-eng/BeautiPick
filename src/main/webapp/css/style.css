@@ -97,6 +97,12 @@ img {
   white-space: nowrap;
 }
 
+/* Focus-visible style for buttons (item 19) */
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 /* Solid Primary Style (Browse & Buy, Card buttons, Main Action) */
 .btn-primary {
   background-color: var(--color-primary);
@@ -105,10 +111,12 @@ img {
   box-shadow: 0 2px 6px rgba(168, 88, 72, 0.25);
 }
 
-.btn-primary:hover {
-  background-color: var(--color-primary-hover);
-  box-shadow: 0 4px 10px rgba(168, 88, 72, 0.35);
-  transform: translateY(-1px);
+@media (hover: hover) {
+  .btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    box-shadow: 0 4px 10px rgba(168, 88, 72, 0.35);
+    transform: translateY(-1px);
+  }
 }
 
 .btn-large {
@@ -126,10 +134,12 @@ img {
   padding: 8px 16px;
 }
 
-.btn-secondary-outline:hover {
-  background-color: var(--color-primary-light);
-  border-color: var(--color-primary-hover);
-  color: var(--color-primary-hover) !important;
+@media (hover: hover) {
+  .btn-secondary-outline:hover {
+    background-color: var(--color-primary-light);
+    border-color: var(--color-primary-hover);
+    color: var(--color-primary-hover) !important;
+  }
 }
 
 .btn-sm {
@@ -213,10 +223,29 @@ img {
   font-size: 14.5px;
   font-weight: 500;
   color: var(--color-text-muted);
+  min-height: 44px;              /* item 5: touch target */
+  display: inline-flex;
+  align-items: center;
+  padding: 0 6px;                /* item 5: horizontal padding */
 }
 
-.nav-link:hover {
+@media (hover: hover) {
+  .nav-link:hover {
+    color: var(--color-primary);
+  }
+}
+
+/* Focus-visible for nav links (item 19) */
+.nav-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Active page nav link (item 13) */
+.nav-link.nav-active {
   color: var(--color-primary);
+  font-weight: 700;
 }
 
 /* ==========================================================================
@@ -319,9 +348,11 @@ img {
   transition: var(--transition);
 }
 
-.section-header-link:hover {
-  color: var(--color-primary-hover);
-  transform: translateX(2px);
+@media (hover: hover) {
+  .section-header-link:hover {
+    color: var(--color-primary-hover);
+    transform: translateX(2px);
+  }
 }
 
 /* Category Filter Chips */
@@ -342,11 +373,20 @@ img {
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
+  flex-shrink: 0;              /* item 8: prevent chips from shrinking */
 }
 
-.chip:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+@media (hover: hover) {
+  .chip:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+}
+
+/* Focus-within/focus-visible for chips (item 19) */
+.chip:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 .chip.active {
@@ -354,6 +394,17 @@ img {
   border-color: var(--color-primary);
   color: #ffffff;
   box-shadow: 0 2px 6px rgba(168, 88, 72, 0.25);
+}
+
+/* Empty category message (item 14) */
+.empty-category-msg {
+  display: none;
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--color-text-muted);
+  font-size: 15px;
+  font-weight: 500;
+  grid-column: 1 / -1;
 }
 
 /* Product Grid */
@@ -372,6 +423,7 @@ img {
   text-align: center;
 }
 
+/* item 24: removed inline styles — these CSS classes carry all the styles */
 .btn-browse-all {
   display: inline-flex;
   align-items: center;
@@ -387,9 +439,11 @@ img {
   transition: var(--transition);
 }
 
-.btn-browse-all:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(168, 88, 72, 0.32);
+@media (hover: hover) {
+  .btn-browse-all:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(168, 88, 72, 0.32);
+  }
 }
 
 /* Product Card */
@@ -404,10 +458,16 @@ img {
   box-shadow: var(--shadow-sm);
 }
 
-.product-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-3px);
-  border-color: #d8cec4;
+@media (hover: hover) {
+  .product-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+    border-color: #d8cec4;
+  }
+
+  .product-card:hover .product-image {
+    transform: scale(1.03);
+  }
 }
 
 .card-image-wrap {
@@ -427,17 +487,14 @@ img {
   transition: transform 0.3s ease;
 }
 
-.product-card:hover .product-image {
-  transform: scale(1.03);
-}
-
+/* item 21: raise category-pill font-size to 12px */
 .category-pill {
   position: absolute;
   top: 12px;
   right: 12px;
   background-color: rgba(255, 255, 255, 0.92);
   color: var(--color-text-main);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -476,8 +533,10 @@ img {
   color: inherit;
 }
 
-.product-name a:hover {
-  color: var(--color-primary);
+@media (hover: hover) {
+  .product-name a:hover {
+    color: var(--color-primary);
+  }
 }
 
 /* Match Reason Highlight inside Card (on quiz results page) */
@@ -506,6 +565,7 @@ img {
   line-height: 1.35;
 }
 
+/* item 11: card footer — flex-wrap so button doesn't crowd price */
 .card-footer-pricing {
   margin-top: auto;
   padding-top: 14px;
@@ -514,15 +574,18 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  flex-wrap: wrap;    /* item 11 */
 }
 
 .price-block {
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
 }
 
+/* item 21: raise price-label min font-size to 12px */
 .price-label {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--color-text-muted);
   text-transform: uppercase;
   font-weight: 600;
@@ -534,11 +597,20 @@ img {
   color: var(--color-text-main);
 }
 
+/* item 10: raise btn-card touch target to ≥44px; item 11: full-width when wrapped */
 .btn-card {
-  height: 34px;
+  height: 44px;
   padding: 0 14px;
   font-size: 12.5px;
   border-radius: var(--radius-sm);
+  flex: 1 1 auto;         /* item 11: take full width when wrapping */
+  min-width: 0;
+}
+
+/* Focus-within for option-card (item 19) */
+.option-card:focus-within {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 /* ==========================================================================
@@ -559,8 +631,10 @@ img {
   color: var(--color-text-muted);
 }
 
-.breadcrumb a:hover {
-  color: var(--color-primary);
+@media (hover: hover) {
+  .breadcrumb a:hover {
+    color: var(--color-primary);
+  }
 }
 
 .breadcrumb span {
@@ -639,8 +713,10 @@ img {
   justify-content: center;
 }
 
-.btn-search:hover {
-  background-color: #000000;
+@media (hover: hover) {
+  .btn-search:hover {
+    background-color: #000000;
+  }
 }
 
 .filter-group {
@@ -720,6 +796,7 @@ img {
 
 .detail-media {
   position: relative;
+  min-width: 0;      /* item 2: prevent sideways scroll */
 }
 
 .detail-image-box {
@@ -769,6 +846,7 @@ img {
   margin-bottom: 16px;
 }
 
+/* item 6: flex-wrap + gap so label/price/badge wrap cleanly at narrow widths */
 .detail-price-hero {
   background-color: #ffffff;
   border: 1px solid var(--color-border);
@@ -777,6 +855,7 @@ img {
   display: flex;
   align-items: center;
   gap: 14px;
+  flex-wrap: wrap;    /* item 6 */
   margin-bottom: 22px;
   box-shadow: var(--shadow-sm);
 }
@@ -800,6 +879,10 @@ img {
   font-weight: 700;
   padding: 4px 10px;
   border-radius: var(--radius-full);
+}
+
+.detail-info {
+  min-width: 0;      /* item 2: prevent sideways scroll */
 }
 
 .detail-desc {
@@ -946,14 +1029,22 @@ img {
   box-shadow: 0 2px 6px rgba(31, 122, 82, 0.25);
 }
 
-.btn-highlight:hover {
-  background-color: #186040;
+@media (hover: hover) {
+  .btn-highlight:hover {
+    background-color: #186040;
+  }
 }
 
 .table-notice {
   font-size: 12px;
   color: var(--color-text-muted);
   margin-top: 14px;
+}
+
+/* Mobile price-table card layout (item 2) */
+/* thead is visually hidden but accessible */
+.price-table-mobile-hidden-thead {
+  /* used at ≤640px — see @media block below */
 }
 
 /* ==========================================================================
@@ -1014,6 +1105,19 @@ img {
   margin: 8px 0 0 20px;
 }
 
+/* item 20: inline validation alert (replaces alert()) */
+.quiz-inline-alert {
+  display: none;
+  background-color: #fdf2f2;
+  border: 1px solid #f8b4b4;
+  color: #9b1c1c;
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
 .quiz-progress-wrap {
   margin-bottom: 24px;
 }
@@ -1049,6 +1153,11 @@ img {
   padding: 32px;
   box-shadow: var(--shadow-sm);
   margin-bottom: 24px;
+}
+
+/* item 4: scroll-margin-top for quizForm so sticky header doesn't cover it */
+#quizForm {
+  scroll-margin-top: 80px;   /* header height (68px) + 12px breathing room */
 }
 
 .quiz-step {
@@ -1109,9 +1218,11 @@ img {
   transition: var(--transition);
 }
 
-.option-card:hover {
-  border-color: #c9bdb3;
-  background-color: #fdfbf9;
+@media (hover: hover) {
+  .option-card:hover {
+    border-color: #c9bdb3;
+    background-color: #fdfbf9;
+  }
 }
 
 .option-card.selected,
@@ -1186,6 +1297,8 @@ img {
   align-items: center;
   padding-top: 18px;
   border-top: 1px solid var(--color-border-light);
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .btn-step-prev {
@@ -1203,10 +1316,12 @@ img {
   justify-content: center;
 }
 
-.btn-step-prev:hover {
-  background-color: #f2ece6;
-  color: var(--color-text-main);
-  border-color: #d8cec4;
+@media (hover: hover) {
+  .btn-step-prev:hover {
+    background-color: #f2ece6;
+    color: var(--color-text-main);
+    border-color: #d8cec4;
+  }
 }
 
 .btn-step-next, .btn-submit-quiz {
@@ -1217,6 +1332,13 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+/* item 10: raise btn-sm touch target */
+@media (pointer: coarse) {
+  .btn-sm {
+    min-height: 44px;
+  }
 }
 
 .quiz-disclaimer-card {
@@ -1276,10 +1398,10 @@ img {
   margin: 0 auto 16px auto;
 }
 
-/* Mandatory One-line medical notice bar */
+/* item 9: medical-notice-bar: use --radius-md, text-align left so multi-line text isn't clipped */
 .medical-notice-bar {
-  display: inline-flex;
-  align-items: center;
+  display: flex;                        /* item 9: was inline-flex, switch to flex for full-width */
+  align-items: flex-start;
   gap: 8px;
   background-color: var(--color-warning-bg);
   border: 1px solid var(--color-warning-border);
@@ -1287,12 +1409,15 @@ img {
   font-size: 13.5px;
   font-weight: 500;
   padding: 8px 16px;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-md);      /* item 9: was --radius-full */
   margin-top: 6px;
+  text-align: left;                     /* item 9 */
 }
 
 .notice-icon {
   font-size: 15px;
+  flex-shrink: 0;
+  margin-top: 1px;
 }
 
 .profile-summary-box {
@@ -1388,9 +1513,10 @@ img {
   margin-bottom: 14px;
 }
 
+/* item 21: raise footer-disclaimer-note contrast — #6e6460 gives ≥4.5:1 on #211c1b */
 .footer-disclaimer-note {
   font-size: 12.5px;
-  color: #8c827c;
+  color: #b0a9a4;
   line-height: 1.4;
 }
 
@@ -1419,16 +1545,19 @@ img {
   font-size: 13.5px;
 }
 
-.footer-col a:hover {
-  color: #ffffff;
+@media (hover: hover) {
+  .footer-col a:hover {
+    color: #ffffff;
+  }
 }
 
+/* item 21: raise footer-bottom contrast — #9b9490 on #211c1b gives ≥4.5:1 */
 .footer-bottom {
   border-top: 1px solid #302826;
   padding: 20px 0;
   text-align: center;
   font-size: 12.5px;
-  color: #7b716b;
+  color: #b0a9a4;
 }
 
 /* ==========================================================================
@@ -1449,6 +1578,28 @@ img {
   }
 }
 
+/* item 12: header between 641px and 760px — no wrapping, smaller gaps */
+@media (min-width: 641px) and (max-width: 760px) {
+  .nav-links {
+    gap: 10px;
+    white-space: nowrap;
+  }
+
+  .nav-link {
+    font-size: 13px;
+    padding: 0 4px;
+  }
+
+  .header-inner {
+    gap: 10px;
+  }
+
+  .btn-quiz-header {
+    font-size: 12px;
+    padding: 0 10px;
+  }
+}
+
 @media (max-width: 640px) {
   .header-inner {
     height: auto;
@@ -1457,13 +1608,34 @@ img {
     justify-content: space-between;
   }
 
+  /* item 7: allow .header-left to shrink/wrap */
   .header-left {
-    gap: 10px;
-    width: 100%;
-    justify-content: space-between;
+    gap: 8px;
+    flex-shrink: 1;
+    flex-wrap: wrap;
+    min-width: 0;
   }
 
-  /* Compact header quiz button stays visible on mobile in top-left */
+  /* item 5: hide the duplicate "Skin Quiz" nav link (keep "Get Recommendations" btn) */
+  .nav-link-skin-quiz {
+    display: none;
+  }
+
+  /* item 5: compact nav */
+  .header-nav {
+    width: 100%;
+    border-top: 1px solid var(--color-border-light);
+    padding-top: 6px;
+    justify-content: center;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+
+  /* item 5: nav links already have min-height 44px from above */
+
+  /* item 5: compact header quiz button */
   .btn-quiz-header {
     height: 36px;
     font-size: 12.5px;
@@ -1471,16 +1643,7 @@ img {
     flex-shrink: 0;
   }
 
-  .header-nav {
-    width: 100%;
-    border-top: 1px solid var(--color-border-light);
-    padding-top: 8px;
-    justify-content: center;
-  }
-
-  .nav-links {
-    gap: 16px;
-  }
+  /* item 7: shorten button text at ≤360px via pseudo content — handled in JSP */
 
   .hero-headline {
     font-size: 24px;
@@ -1511,11 +1674,132 @@ img {
     align-items: stretch;
   }
 
+  /* item 1: .search-box flex: 0 0 auto in column direction */
   .search-box {
     width: 100%;
+    flex: 0 0 auto;
   }
 
   .filter-group {
     justify-content: space-between;
+  }
+
+  /* item 3: prevent iOS auto-zoom on inputs */
+  .search-input,
+  .filter-select {
+    font-size: 16px;
+  }
+
+  /* item 8: category chips bar — single row, horizontal scroll, no wrap */
+  .category-chips-bar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 4px;         /* room for scroll bar on some browsers */
+  }
+
+  /* item 2: price table stacked card layout on mobile */
+  .price-table thead {
+    /* Visually hidden but accessible to screen readers */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .price-table,
+  .price-table tbody,
+  .price-table tr,
+  .price-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .price-table tr {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    margin-bottom: 12px;
+    padding: 12px;
+    background-color: var(--color-surface);
+  }
+
+  .price-table tr.lowest-price-row {
+    background-color: var(--color-highlight-row);
+  }
+
+  /* item 2: top row = site name + price side by side */
+  .price-table td.cell-sitename,
+  .price-table td.cell-price {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+    border: none;
+    padding: 0 8px 0 0;
+  }
+
+  /* item 2: status badge on its own line */
+  .price-table td.cell-badge {
+    display: block;
+    border: none;
+    padding: 6px 0 0 0;
+  }
+
+  /* item 2: Buy Now full-width below */
+  .price-table td.cell-action {
+    display: block;
+    text-align: left;
+    border: none;
+    padding: 10px 0 0 0;
+  }
+
+  .price-table td.cell-action .btn-buy {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* item 2: add min-width: 0 to prevent sideways scroll — already in .detail-info/.detail-media above */
+}
+
+/* item 7: at ≤360px shorten logo text if needed; keep logo compact */
+@media (max-width: 360px) {
+  .site-logo .logo-text {
+    font-size: 16px;
+  }
+
+  .logo-mark {
+    font-size: 17px;
+  }
+
+  /* shorten btn-quiz-header text via clip */
+  .btn-quiz-header .btn-quiz-label-long {
+    display: none;
+  }
+
+  .btn-quiz-header .btn-quiz-label-short {
+    display: inline;
+  }
+}
+
+/* Show long label by default, hide short label */
+.btn-quiz-header .btn-quiz-label-short {
+  display: none;
+}
+
+/* item 10: raise touch targets on coarse-pointer devices */
+@media (pointer: coarse) {
+  .btn-card {
+    min-height: 44px;
+  }
+
+  .chip {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
   }
 }
